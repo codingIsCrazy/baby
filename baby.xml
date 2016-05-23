@@ -1,0 +1,5 @@
+<Context path="/baby" reloadable="true" docBase="/Users/liujianjun/Documents/workspace/baby">
+<Resource name="jdbc/baby_master" auth="Container" type="javax.sql.DataSource"
+             maxActive="5" maxIdle="1" maxWait="30000" removeAbandoned="true" removeAbandonedTimeout="10" logAbandoned="true" username="root" password="" driverClassName="com.mysql.jdbc.Driver" testOnBorrow="true" validationQuery="select 1"
+             url="jdbc:mysql://127.0.0.1:3306/baby_core?characterEncoding=UTF-8" />
+</Context>
