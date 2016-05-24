@@ -3,7 +3,8 @@
 					
 <mapper namespace="com.baby.user.dao.mappers.UserMapper">
 	
+	<select id="test" resultType="java.util.Map">
+		select * from test
+	</select>
 	
-	
-
 </mapper>

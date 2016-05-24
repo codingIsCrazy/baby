@@ -41,7 +41,7 @@ public class UserController {
 	/**
 	 * 判断用户名是否存在
 	 */
-	@RequestMapping(value="/userIsExist",method=RequestMethod.POST)
+	@RequestMapping(value="/userIsExist")
 	@ResponseBody
 	public Map<String, Object> userIsExist(HttpServletRequest request,HttpServletResponse response){
 		
@@ -52,6 +52,7 @@ public class UserController {
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("name", name);
 		try{
+			userService.test();
 			if(name == null || "".equals(name.trim())){
 				apiCode = ApiMessage.API_USER_NAME_NOT_EMTPY_CODE;
 			}else{

@@ -22,5 +22,10 @@ public class UserServiceImpl implements UserService{
 	@Resource
 	private UserDao userDao;
 
+	@Override
+	public void test() throws Exception {
+		userDao.test();
+	}
+
 	
 }
