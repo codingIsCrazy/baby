@@ -170,31 +170,31 @@ public class JsonUtils {
 
 
 
-    public static void main(String[] args) {
-
-        //System.out.println(objToList("[开发,技术]"));
-        //System.out.println(objToList("[\"开发\",\"技术\"]"));
-        //System.out.println(objToList("[\"开发\",\"技术\"]").size());
-
-//        Map<String,Integer> map = new HashMap<String,Integer>();
-//        map.put("bb", 1);
-//        System.out.println(addIntAttributeToJson("{'id':'aa'}",null,map));
+//    public static void main(String[] args) {
 //
-        String list = "{'id':'aa'}";
-
-        Map<String,List<String>> map = new HashMap<String,List<String>>();
-        List<String> aa = new ArrayList<String>();
-        aa.add("a1");
-        aa.add("a2");
-        map.put("aaaaa", aa);
-        List<String> bb = new ArrayList<String>();
-        bb.add("b1");
-        bb.add("b2");
-        map.put("bbbb", bb);
-
-        System.out.println(addListToJson(list,map));
-
-    }
+//        //System.out.println(objToList("[开发,技术]"));
+//        //System.out.println(objToList("[\"开发\",\"技术\"]"));
+//        //System.out.println(objToList("[\"开发\",\"技术\"]").size());
+//
+////        Map<String,Integer> map = new HashMap<String,Integer>();
+////        map.put("bb", 1);
+////        System.out.println(addIntAttributeToJson("{'id':'aa'}",null,map));
+////
+//        String list = "{'id':'aa'}";
+//
+//        Map<String,List<String>> map = new HashMap<String,List<String>>();
+//        List<String> aa = new ArrayList<String>();
+//        aa.add("a1");
+//        aa.add("a2");
+//        map.put("aaaaa", aa);
+//        List<String> bb = new ArrayList<String>();
+//        bb.add("b1");
+//        bb.add("b2");
+//        map.put("bbbb", bb);
+//
+//        System.out.println(addListToJson(list,map));
+//
+//    }
 
 
     /**
@@ -292,5 +292,20 @@ public class JsonUtils {
     		return str.toString();
     		
     }
+    
+    
+    /**
+     * 字符串转为json对象
+     */
+    public static JSONObject strToJson(String json){
+    		JSONObject obj = JSONObject.fromObject(json);
+    		return obj;
+    }
+    
+    public static void main(String[] args) {
+    		String str = "{\"brand_no\":\"jycy,sy\",\"unit_rank\":\"2\",\"package\":\"2\"}";
+		JSONObject o = strToJson(str);
+		System.err.println(o.getString("brand_no"));
+	}
 
 }

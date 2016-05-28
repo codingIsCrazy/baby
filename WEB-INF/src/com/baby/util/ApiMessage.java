@@ -30,6 +30,9 @@ public class ApiMessage {
 	public static final String API_PARAM_ERROR = "参数错误";
 	public static final int API_PARAM_ERROR_CODE = 107;
 	
+	public static final String API_PHONE_NOT_EMPTY = "手机号不能为空";
+	public static final int API_PHONE_ERROR_CODE = 108;
+	
 	public static String getErrorMessage(int code){
 		
 		String errorMessage = null;
@@ -70,6 +73,10 @@ public class ApiMessage {
 		//参数错误
 		case API_PARAM_ERROR_CODE: 
 			errorMessage = API_PARAM_ERROR;
+			break;
+		//参数错误
+		case API_PHONE_ERROR_CODE: 
+			errorMessage = API_PHONE_NOT_EMPTY;
 			break;
 		default:
 			break;

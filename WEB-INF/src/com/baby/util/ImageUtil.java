@@ -16,7 +16,7 @@ import com.aliyun.oss.model.PutObjectResult;
  */
 public class ImageUtil {
 
-	private static final String public_bucket = "nxj-public";
+	private static final String public_bucket = "baby-head-img";
 	
 	private static final String ALIYUN_IMAGE_URL = "http://oss-cn-beijing.aliyuncs.com";
 	
