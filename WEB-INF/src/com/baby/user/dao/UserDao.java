@@ -1,5 +1,6 @@
 package com.baby.user.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import com.baby.user.dto.User;
@@ -34,5 +35,10 @@ public interface UserDao {
 	 * 更细用户资料
 	 */
 	public void updateUserByToken(Map<String, Object> map);
+	
+	/**
+	 * 查询用户
+	 */
+	public List<User> queryUserByLike(String content);
 	
 }
