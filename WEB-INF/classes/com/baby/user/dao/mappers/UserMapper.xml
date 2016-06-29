@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+					
+<mapper namespace="com.baby.user.dao.mappers.UserMapper">
+	
+	<resultMap type="com.baby.user.dto.User" id="user">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="phone" property="phone"/>
+		<result column="token" property="token"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="head_img" property="headImg"/>
+	</resultMap>
+	
+	
+	<select id="test" resultType="java.util.Map">
+		select * from test
+	</select>
+	
+	<!-- 添加用户 -->
+	<insert id="addUser" parameterType="com.baby.user.dto.User">
+		insert into user(name,phone,token,device,create_time,update_time,password,head_img)
+		values(#{name},#{phone},#{token},#{device},#{createTime},#{updateTime},#{password},#{headImg})
+	</insert>
+	
+	
+	<!-- 获取用户通过token -->
+	<select id="getUserByToken" parameterType="string" resultMap="user">
+		select * from user where token=#{token}
+	</select>
+	
+	
+	<!-- 查询 -->
+	<select id="queryUser" resultMap="user" parameterType="java.util.Map">
+		select * from user  
+		<where>
+			<if test="name != '' and name != null">
+				name=#{name}
+			</if>
+			<if test="phone != '' and phone != null">
+				and phone=#{phone}
+			</if>
+			<if test="password != '' and password != null">
+				and password=#{password}
+			</if>
+			<if test="token != '' and token != null">
+				and token=#{token}
+			</if>
+		</where>
+		limit 1
+	</select>
+	
+	<update id="updateToken" parameterType="java.util.Map">
+		update user set token=#{token} 
+		<where>
+			<if test="id>0">
+				id=#{id}
+			</if>
+			<if test="phone != '' and phone != null">
+				phone=#{phone}
+			</if>
+		</where>
+	</update>
+	
+	
+	<!-- 更细资料 -->
+	<update id="updateUserByToken" parameterType="java.util.Map">
+		update user set name=#{name},device=#{device},update_time=#{updateTime},head_img=#{headImg}
+		where token=#{token}
+	</update>
+	
+	
+</mapper>

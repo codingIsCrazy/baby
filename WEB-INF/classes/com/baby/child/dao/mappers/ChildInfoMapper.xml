@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+					
+<mapper namespace="com.baby.child.dao.mappers.ChildInfoMapper">
+	
+    <resultMap type="com.baby.child.dto.ChildInfo" id="child_info">
+		<result column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="nick_name" property="nickName"/>
+		<result column="sex" property="sex"/>
+		<result column="birthday" property="birthday"/>
+		<result column="icon" property="icon"/>
+		<result column="user_id" property="userId"></result>
+		<result column="birthday_time" property="birthdayTime"></result>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="status" property="status"></result>
+	</resultMap>
+	
+    <!-- 添加用户孩子信息 -->
+    <insert id="addChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        insert into child_info(name, nick_name, sex, birthday, icon, user_id, birthday_time, 
+        create_time, update_time) values (#{name}, #{nickName}, #{sex}, #{birthday}, #{icon}, 
+        #{userId}, #{birthdayTime}, #{createTime}, #{updateTime})
+    </insert>
+    
+    <!-- 删除用户孩子信息 -->
+    <update id="removeChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        update child_info set status = 9 where user_id = #{userId} and id = #{id}
+    </update>
+    
+    <!-- 修改用户孩子信息 -->
+    <update id="updateChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        update child_info set name = #{name}, nick_name = #{nickName}, sex = #{sex},
+        birthday = #{birthday}, icon = #{icon}, birthday_time = #{birthdayTime}, 
+        update_time = #{updateTime} where user_id = #{userId} and id = #{id} 
+    </update>
+	
+    <!-- 查询当前用户孩子信息,状态：已删除为9-->
+	<select id="queryChildInfo" resultMap="child_info" parameterType="java.util.Map">
+	    select * from child_info where status != 9
+	    <if test="userId > 0">
+			 and user_id=#{userId}
+		</if>
+	</select>
+</mapper>
