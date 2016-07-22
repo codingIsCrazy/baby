@@ -13,6 +13,7 @@ public class PhotoInfo {
     private String photoUrl;
     private String description;
     private String photoTime;
+    private int photoType;
     private String createTime;
     private String updateTime;
     private int status;
@@ -123,5 +124,13 @@ public class PhotoInfo {
      */
     public void setStatus(int status) {
         this.status = status;
+    }
+    
+    public int getPhotoType() {
+        return photoType;
+    }
+    
+    public void setPhotoType(int photoType) {
+        this.photoType = photoType;
     }
 }
