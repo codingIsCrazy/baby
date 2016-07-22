@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+					
+<mapper namespace="com.baby.album.dao.mappers.PhotoInfoMapper">
+	
+    <resultMap type="com.baby.album.dto.PhotoInfo" id="photo_album">
+		<result column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="child_id" property="childId"/>
+		<result column="photo_url" property="photoUrl"/>
+		<result column="description" property="description"/>
+		<result column="photo_time" property="photoTime"/>
+		<result column="photo_type" property="photoType"/>
+		<result column="create_time" property="createTime"/>
+		<result column="update_time" property="updateTime"/>
+		<result column="status" property="status"/>
+	</resultMap>
+	
+    <!-- 添加照片信息 -->
+    <insert id="addChildPhotoInfo" parameterType="com.baby.album.dto.PhotoInfo">
+        insert into photo_album(user_id, child_id, photo_url, description, photo_time, 
+        photo_type, create_time, update_time) values (#{userId}, #{childId}, #{photoUrl}, 
+        #{description}, #{photoTime}, #{photoType}, #{createTime}, #{updateTime})
+    </insert>
+    
+    <!-- 查询某个孩子照片信息数量 -->
+    <select id="findChildPhotoByIdCount" parameterType="java.util.Map" resultType="Integer">
+        select count(*) from photo_album where child_id = #{childId}
+    </select>
+    
+    <!-- 查询某个孩子照片信息 -->
+    <select id="findChildPhotoById" parameterType="java.util.Map" resultMap="photo_album">
+        select * from photo_album where child_id = #{childId} limit #{pageIndex}, #{pageSize}
+    </select>
+    
+    
+    
+    <!-- 添加用户孩子信息 -->
+    <!-- <insert id="addChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        insert into child_info(name, nick_name, sex, birthday, icon, user_id, birthday_time, 
+        create_time, update_time) values (#{name}, #{nickName}, #{sex}, #{birthday}, #{icon}, 
+        #{userId}, #{birthdayTime}, #{createTime}, #{updateTime})
+    </insert> -->
+    
+    <!-- 删除用户孩子信息 -->
+    <!-- <update id="removeChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        update child_info set status = 9 where user_id = #{userId} and id = #{id}
+    </update> -->
+    
+    <!-- 修改用户孩子信息 -->
+    <!-- <update id="updateChildInfo" parameterType="com.baby.child.dto.ChildInfo">
+        update child_info set name = #{name}, nick_name = #{nickName}, sex = #{sex},
+        birthday = #{birthday}, icon = #{icon}, birthday_time = #{birthdayTime}, 
+        update_time = #{updateTime} where user_id = #{userId} and id = #{id} 
+    </update> -->
+	
+    <!-- 查询当前用户孩子信息,状态：已删除为9-->
+	<!-- <select id="queryChildInfo" resultMap="child_info" parameterType="java.util.Map">
+	    select * from child_info where status != 9
+	    <if test="userId > 0">
+			 and user_id=#{userId}
+		</if>
+	</select> -->
+</mapper>

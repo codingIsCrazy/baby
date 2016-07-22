@@ -7,14 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.apache.ibatis.spring.support.AbstractDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.baby.child.dao.ChildInfoDao;
 import com.baby.child.dto.ChildInfo;
-import com.baby.child.service.ChildInfoService;
 
 /** 
  * @author guolei 
@@ -22,10 +19,7 @@ import com.baby.child.service.ChildInfoService;
  */
 @Repository
 public class ChildInfoMapper extends AbstractDaoSupport implements ChildInfoDao {
-    
-    @Resource
-    private ChildInfoService childInfoService;
-
+   
     /* (non-Javadoc)
      * @see com.baby.child.dao.ChildInfoDao#addChildInfo(int, com.baby.child.dto.ChildInfo)
      */
